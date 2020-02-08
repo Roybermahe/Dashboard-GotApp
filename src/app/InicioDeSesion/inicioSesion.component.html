@@ -1,0 +1,15 @@
+<div class="page">
+    <div class="mx-auto formPosition">
+        <h1 class="text-center">GotApp</h1>
+        <form #f="ngForm" (ngSubmit)="f.form.valid && ComprobarDatos()">
+            <p class="w-90 message text-center">Ingresa tu usuario y contraseña para acceder al dashboard de GotApp</p>
+            <div class="w-90 text-center">
+                <input class="form-control" [(ngModel)]="user" type="text" name="user" placeholder="User" required>
+                <br>
+                <input class="form-control" [(ngModel)]="password" type="password" name="pass" placeholder="Password" required>
+                <br>
+                <button type="submit" class="btn btn-dark text-center form-control"> Iniciar Sesión</button>
+            </div>
+        </form>
+    </div>
+</div>
