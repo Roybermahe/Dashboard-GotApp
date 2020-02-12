@@ -3,8 +3,11 @@
         <h1 class="text-center">GotApp</h1>
         <form #f="ngForm" (ngSubmit)="f.form.valid && ComprobarDatos()">
             <p class="w-90 message text-center">Ingresa tu usuario y contraseña para acceder al dashboard de GotApp</p>
+            <div class="alert alert-danger" role="alert" *ngIf="message">
+               Contraseña o Nombre de usuario incorrectas
+              </div>
             <div class="w-90 text-center">
-                <input class="form-control" [(ngModel)]="user" type="text" name="user" placeholder="User" required>
+                <input class="form-control" [(ngModel)]="user" type="text" name="user" placeholder="User"  required>
                 <br>
                 <input class="form-control" [(ngModel)]="password" type="password" name="pass" placeholder="Password" required>
                 <br>

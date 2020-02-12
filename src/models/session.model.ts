@@ -1,4 +1,6 @@
 export interface sessionModel {
-    user: string,
-    password: string
+    Id?: number,
+    User: string,
+    Pass: string,
+    token?: string    
 }

@@ -4,8 +4,9 @@ import { InicioSesionModule } from './InicioDeSesion/inicioSesion.module';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/InicioSesion', pathMatch: 'full'},
-  {path: 'InicioSesion', loadChildren: () => import('./InicioDeSesion/inicioSesion.module').then(m => m.InicioSesionModule)}
+  { path: '', redirectTo: '/InicioSesion', pathMatch: 'full' },
+  { path: 'InicioSesion', loadChildren: () => import('./InicioDeSesion/inicioSesion.module').then(m => m.InicioSesionModule) },
+  { path: 'Index', loadChildren: () => import('./Index/index.module').then(m => m.indexModule) }
 ];
 
 @NgModule({
