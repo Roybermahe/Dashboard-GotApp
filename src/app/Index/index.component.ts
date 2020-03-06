@@ -14,6 +14,6 @@ export class indexComponent implements OnInit {
     constructor( private routes : Router) {}
 
     ngOnInit() {
-       !SessionStge.getSesion() ? this.routes.navigateByUrl('/InicioSesion'): null;
+      !SessionStge.getSesion() ? this.routes.navigateByUrl('/InicioSesion'): null;
     }
 }
