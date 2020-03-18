@@ -13,9 +13,9 @@ import { Router } from '@angular/router';
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarNav">
-            <ul class="navbar-nav ml-auto ">
+            <ul class="navbar-nav ml-auto navLinks">
                 <li class="nav-item active">
-                    <a class="nav-link px-3" href="/Index">Inicio<span class="sr-only">(current)</span></a>
+                    <a class="nav-link px-3" href="Index">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link  px-3" href="#">Balance</a>
@@ -34,7 +34,7 @@ import { Router } from '@angular/router';
             </div>
         </nav>
     `,
-    styleUrls: ['./index.component.css']
+    styleUrls: ['./menu.component.css']
 })
 
 export class menuNav { 

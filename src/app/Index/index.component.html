@@ -1,2 +1,43 @@
 <nav-menu></nav-menu>
-<router-outlet></router-outlet>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+           <!--<filter-Component></filter-Component>--> 
+            <br>
+            <div>
+                <mat-card style="width: 18rem;" class="clearfix  my-0 py-0" (tap)="selectView('table')">
+                    <img class="float-left py-2 align-middle" src="https://img.icons8.com/material/50/C4C4C4/table-1--v1.png"/>
+                    <h6 class="py-2 align-middle">Mostrar información de movimientos</h6>
+                </mat-card>
+                <br>
+                <mat-card style="width: 18rem;" class="clearfix  my-0 py-0" (tap)="selectView('crear-credito')">
+                    <img class="float-left py-2 align-middle" src="https://img.icons8.com/small/50/C4C4C4/user.png"/>
+                    <h6 class="py-2 align-middle">Agregar nuevo credito</h6>
+                </mat-card>
+                <br>
+                <mat-card style="width: 18rem;" class="clearfix my-0 py-0" (tap)="agregarClienteDialog()">
+                    <img class="float-left  py-2 align-middle"  src="https://img.icons8.com/windows/50/C4C4C4/edit-user.png"/>
+                    <h6 class="py-2 align-middle">Agregar nuevo cliente</h6>
+                </mat-card>
+                <br>
+                <mat-card style="width: 18rem; " class="clearfix  my-0 py-0" (tap)="agregarRutaDialog()">
+                    <img class="float-left  py-2 align-middle" src="https://img.icons8.com/pastel-glyph/50/C4C4C4/route.png"/>
+                    <h6 class="py-2 align-middle">Rutas</h6>
+                </mat-card>
+                <br>
+                <mat-card style="width: 18rem;" class="clearfix my-0 py-0">
+                    <img class="float-left  py-2 align-middle" src="https://img.icons8.com/small/50/C4C4C4/motocross.png"/>
+                    <h6 class="py-2 align-middle">Agregar nuevo cobrador</h6>
+                </mat-card>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <agregar-credito *ngIf="showCrearCredito"></agregar-credito>
+            <table-component *ngIf="showTable"></table-component>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
