@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { rutaService } from 'src/services/ruta.service';
 import { ruta } from 'src/models/ruta.model';
+import { MatSnackBar } from '@angular/material';
+import { PushNotification } from 'src/app/funcionesGenerales.component';
 
 @Component({
     selector: 'agregar-ruta-dialog',
@@ -26,10 +28,14 @@ export class agregarRutaComponent {
     public ruta: ruta = new ruta();
 
     constructor(
-        private rutaService: rutaService
+        private rutaService: rutaService,
+        public matSnackBar: MatSnackBar
     ) {}
 
     async onSubmit() {
-        (await this.rutaService.guardarRuta(this.ruta)).subscribe();
+        (await this.rutaService.guardarRuta(this.ruta)).subscribe( Response =>
+            PushNotification('Ruta guardada', this.matSnackBar),
+            error =>  PushNotification('Ocurrio un error', this.matSnackBar)
+        );
     }
 }

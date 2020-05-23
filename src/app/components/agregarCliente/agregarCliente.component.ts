@@ -1,7 +1,8 @@
 import { Component, ViewChild, ElementRef } from "@angular/core";
 import { cliente } from 'src/models/cliente.model';
-import { MatDatepicker, MatSelect } from '@angular/material';
+import { MatDatepicker, MatSelect, MatSnackBar } from '@angular/material';
 import { clienteService } from 'src/services/cliente.service';
+import { PushNotification } from "../../funcionesGenerales.component";
 
 @Component({
     selector: 'agregar-cliente-dialog',
@@ -86,13 +87,15 @@ export class agregarClienteComponent {
         {value: 3, descripcion: 'Otro'}
     ];
 
-    constructor(private clienteService: clienteService) {
+    constructor(private clienteService: clienteService, public matSnakbar: MatSnackBar) {
         this.cliente = new cliente();
     }
 
     async onSubmit(){
         this.cliente.fecha_nacimiento_cliente = this.fechaNacimiento._selected;
-        (await this.clienteService.guardarCliente(this.cliente)).subscribe();
+        (await this.clienteService.guardarCliente(this.cliente)).subscribe(Response => {
+            PushNotification('Se guardo el cliente', this.matSnakbar);
+        }, error => PushNotification('Ocurrio un error', this.matSnakbar));
     }
 }
 

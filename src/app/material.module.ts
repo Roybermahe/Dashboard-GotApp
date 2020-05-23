@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { MatFormFieldModule, MatTableModule, MatInputModule, MatPaginatorModule, MatCardModule, MatDialogModule, MatButtonModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule } from "@angular/material";
+import { MatFormFieldModule, MatTableModule, MatInputModule, MatPaginatorModule, MatCardModule, MatDialogModule, MatButtonModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatSnackBar, MatSnackBarModule } from "@angular/material";
 
 @NgModule({
     imports: [
@@ -14,7 +14,8 @@ import { MatFormFieldModule, MatTableModule, MatInputModule, MatPaginatorModule,
         MatDatepickerModule,
         MatNativeDateModule,
         MatStepperModule,
-        MatRadioModule
+        MatRadioModule,
+        MatSnackBarModule
     ],
     exports: [
         MatFormFieldModule,
@@ -28,7 +29,8 @@ import { MatFormFieldModule, MatTableModule, MatInputModule, MatPaginatorModule,
         MatDatepickerModule,
         MatNativeDateModule,
         MatStepperModule,
-        MatRadioModule
+        MatRadioModule,
+        MatSnackBarModule
     ]
 })
 

@@ -8,6 +8,8 @@ import { credito } from 'src/models/credito.model';
 import { cliente_en_ruta } from 'src/models/clienteRuta.model';
 import { creditoService } from 'src/services/creditos.service';
 import { clientesRutaService } from 'src/services/clientesRuta.service';
+import { PushNotification } from 'src/app/funcionesGenerales.component';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'agregar-credito',
@@ -132,7 +134,7 @@ import { clientesRutaService } from 'src/services/clientesRuta.service';
                         <h6>Porcentaje del credito:</h6>
                     </div>
                     <div class="col-md-7">
-                        <p *ngIf="creditoNuevo.porcentaje_credito" >{{ creditoNuevo.porcentaje_credito }}</p>
+                        <p *ngIf="creditoNuevo.porcentaje_credito" >{{ creditoNuevo.porcentaje_credito | percent }}</p>
                     </div>
                 </div>
                 <hr>
@@ -181,7 +183,8 @@ export class agregarCreditoComponent implements OnInit {
         private clienteService: clienteService,
         private rutaService: rutaService,
         private creditoService: creditoService,
-        private clientesRutaService: clientesRutaService
+        private clientesRutaService: clientesRutaService,
+        public matSnackBar: MatSnackBar
     ) {}
 
     async ngOnInit() {
@@ -223,6 +226,7 @@ export class agregarCreditoComponent implements OnInit {
         this.creditoNuevo.porcentaje_credito = <number>(this.thirdFormGroup.get('porcentajeCredito').value / 100);
         this.creditoNuevo.numero_cuotas_credito = <number>this.thirdFormGroup.get('numeroCuotas').value;
         this.creditoNuevo.observaciones = <string>this.thirdFormGroup.get('Observaciones').value;
+        this.creditoNuevo.fecha_registro_credito = new Date();
         this.creditoNuevo.valor_restante_credito = <number>(this.creditoNuevo.valor_credito - this.creditoNuevo.valor_abonado_credito);
         this.creditoNuevo.valor_cuota_credito = ((
             (this.creditoNuevo.valor_restante_credito*this.creditoNuevo.porcentaje_credito) + this.creditoNuevo.valor_restante_credito)
@@ -246,6 +250,8 @@ export class agregarCreditoComponent implements OnInit {
 
     async guardarDatos() {
        await Promise.all([(await this.clientesRutaService.postClienteRutas(this.clienteRuta)).subscribe(),
-            (await this.creditoService.guardarCredito(this.creditoNuevo)).subscribe()]);
+            (await this.creditoService.guardarCredito(this.creditoNuevo)).subscribe(Response => {
+                PushNotification('Se registro el credito', this.matSnackBar)
+            }, error => PushNotification('Ocurrio un error', this.matSnackBar))]);
     }
 }
