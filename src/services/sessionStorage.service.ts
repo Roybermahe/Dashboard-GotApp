@@ -2,8 +2,9 @@ import { Injectable } from "@angular/core";
 import { sessionModel } from 'src/models/session.model';
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router';
+import { host } from './host.service';
 
-const UrlHost = 'http://localhost:3000/InicioSesion';
+const UrlHost = host + '/InicioSesion';
 
 @Injectable({
     providedIn: 'root'

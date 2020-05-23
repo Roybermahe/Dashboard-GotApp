@@ -11,7 +11,7 @@ import { throws } from 'assert';
   selector: 'table-component',
   styleUrls: ['./table.component.css'],
   template: `
-    <table mat-table [dataSource]="listaDeCreditos" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="NombreCompleto">
         <th mat-header-cell *matHeaderCellDef> Nombre completo </th>
@@ -47,8 +47,8 @@ import { throws } from 'assert';
 
 export class tableComponent implements OnInit{
   displayedColumns: string[] = ['NombreCompleto', 'Observaciones','Prestado','FechaPrestamo','ValorCuota'];
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  dataSource: any;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  dataSource = new MatTableDataSource();;
   listaDeClientes: cliente[] = [];
   listaDeCreditos: credito[] = [];
   constructor(
@@ -58,7 +58,10 @@ export class tableComponent implements OnInit{
 
   async ngOnInit() {
     await Promise.all([(await this.creditoSvc.getCreditos()).subscribe(
-      (Response: credito[]) => this.listaDeCreditos = Response,
+      (Response: credito[]) => {
+        this.listaDeCreditos = Response;
+        this.verInformaciónTabla(this.listaDeCreditos);
+      },
       error => console.log(error)
     ) , 
     (await this.clienteSvc.getClientes()).subscribe(
@@ -66,11 +69,14 @@ export class tableComponent implements OnInit{
       error => console.log(error)
     )
   ]);
-
-    this.dataSource = new MatTableDataSource(this.listaDeCreditos);
-    this.dataSource.paginator = this.paginator;
   }
 
+  verInformaciónTabla(lista: credito[]) {
+    this.dataSource.disconnect();
+    this.dataSource = new MatTableDataSource(lista);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource._updatePaginator(this.dataSource.data.length);
+  }
   obtenerCliente(credito: credito) {
     credito.ClienteCredito = <cliente>{
       primer_nombre_cliente: '',

@@ -11,3 +11,7 @@ table {
 .btn-filter {
     background-color: #ffb800;
 }
+
+.btn-active {
+    background-color: #a7a7a771;
+}

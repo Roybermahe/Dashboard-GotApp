@@ -6,12 +6,12 @@
            <!--<filter-Component></filter-Component>--> 
             <br>
             <div>
-                <mat-card style="width: 18rem;" class="clearfix  my-0 py-0" (tap)="selectView('table')">
+                <mat-card style="width: 18rem;" class="clearfix  my-0 py-0" [ngClass]="{'btn-active': selection === 'table'}" (tap)="selectView('table')">
                     <img class="float-left py-2 align-middle" src="https://img.icons8.com/material/50/C4C4C4/table-1--v1.png"/>
                     <h6 class="py-2 align-middle">Mostrar información de movimientos</h6>
                 </mat-card>
                 <br>
-                <mat-card style="width: 18rem;" class="clearfix  my-0 py-0" (tap)="selectView('crear-credito')">
+                <mat-card style="width: 18rem;" class="clearfix  my-0 py-0" [ngClass]="{'btn-active': selection === 'crear-credito'}" (tap)="selectView('crear-credito')">
                     <img class="float-left py-2 align-middle" src="https://img.icons8.com/small/50/C4C4C4/user.png"/>
                     <h6 class="py-2 align-middle">Agregar nuevo credito</h6>
                 </mat-card>

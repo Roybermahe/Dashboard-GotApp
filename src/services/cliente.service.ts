@@ -2,8 +2,9 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { cliente } from 'src/models/cliente.model';
 import { SessionStge } from './sessionStorage.service';
+import { host } from './host.service';
 
-const url = 'http://localhost:3000/Clientes/'
+const url = host + '/Clientes/';
 
 @Injectable({
     providedIn: 'root'
