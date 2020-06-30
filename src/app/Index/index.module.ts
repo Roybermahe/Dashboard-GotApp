@@ -10,16 +10,26 @@ import { MaterialModule } from '../material.module';
 import { agregarRutaComponent } from '../components/agregarRuta/agregarRuta.component';
 import { agregarClienteComponent } from '../components/agregarCliente/agregarCliente.component';
 import { agregarCreditoComponent } from '../components/agregarCredito/agregarCredito.component';
+import { inicioPage } from './inicio/inicio.component';
+import { AbonosComponent } from '../components/abonos/abonos.component';
+import { BalanceComponent } from './balance/balance.component';
+import { PlenosComponent } from '../components/plenos/plenos.component';
+import { GastosComponent } from '../components/gastos/gastos.component';
 
 @NgModule({
     declarations: [
         indexComponent,
+        inicioPage,
         menuNav,
         filterComponent,
         tableComponent,
         agregarRutaComponent,
         agregarClienteComponent,
-        agregarCreditoComponent
+        agregarCreditoComponent,
+        AbonosComponent,
+        PlenosComponent,
+        GastosComponent,
+        BalanceComponent
     ],
     imports: [
         indexRoutesModule,

@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { agregarRutaComponent } from '../components/agregarRuta/agregarRuta.component';
 import { agregarClienteComponent } from '../components/agregarCliente/agregarCliente.component';
-
-export type EditorType = 'table' | 'crear-credito';
+import { menuTypes } from 'src/types';
 
 @Component({
   selector: 'index',
@@ -14,7 +13,8 @@ export type EditorType = 'table' | 'crear-credito';
 })
 
 export class indexComponent implements OnInit {
-  public selection: EditorType = 'table';
+  
+  page: menuTypes = 'inicio';
 
   constructor(
     private routes: Router,
@@ -25,26 +25,7 @@ export class indexComponent implements OnInit {
     !SessionStge.getSesion() ? this.routes.navigateByUrl('/InicioSesion') : null;
   }
 
-  agregarRutaDialog() {
-    this.dialog.open(agregarRutaComponent)
-      .afterClosed().subscribe(result => console.log(result));
+  seleccionado(event: menuTypes) {
+    this.page =  event;
   }
-
-  agregarClienteDialog() {
-    this.dialog.open(agregarClienteComponent)
-      .afterClosed().subscribe(result => console.log(result));
-  }
-
-  get showTable() {
-    return this.selection === 'table';
-  }
-
-  get showCrearCredito() {
-    return this.selection === 'crear-credito';
-  }
-
-  selectView(type: EditorType) {
-    this.selection = type;
-  }
-
 }

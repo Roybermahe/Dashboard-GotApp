@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    border-color: #ffb800;
+}
+
+.btn-filter {
+    background-color: #ffb800;
+}

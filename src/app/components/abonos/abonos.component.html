@@ -1,0 +1,42 @@
+<mat-form-field class="example-full-width" appearance="outline">
+  <mat-label>Filtrar por dia</mat-label>
+  <input matInput [matDatepickerFilter]="filterDate" name="fecha" [(ngModel)]="filtroDate" (dateChange)="filterDay()" [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<br>
+<button mat-button (tap)="limpiarFiltro()">Limpiar Filtro</button>
+<br><br>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="tarjeta">
+    <th mat-header-cell *matHeaderCellDef> Tarjeta </th>
+    <td mat-cell *matCellDef="let abono">#{{abono.credito_abono}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="cliente">
+    <th mat-header-cell *matHeaderCellDef> Cliente </th>
+    <td mat-cell *matCellDef="let abono">{{obtenerIdentificacion(abono.credito_abono)}}  </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="abono">
+    <th mat-header-cell *matHeaderCellDef> Abono</th>
+    <td mat-cell *matCellDef="let abono"> {{abono.valor_abono}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="debe">
+    <th mat-header-cell *matHeaderCellDef> Debe </th>
+    <td mat-cell *matCellDef="let abono"> {{valorDebe(abono)}}  </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="Hora">
+    <th mat-header-cell *matHeaderCellDef> Hora </th>
+    <td mat-cell *matCellDef="let abono"> {{abono.hora_actualizacion_abono}} </td>
+  </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+<br><br>
+<h5>Total en abonos: {{sumaTotalAbonos}}</h5>
+<h5>Cantidad de abonos: {{cantidadAbonos}}</h5>

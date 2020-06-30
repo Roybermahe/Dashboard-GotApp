@@ -1,0 +1,33 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+           <!--<filter-Component></filter-Component>--> 
+            <br>
+            <div>
+                <mat-card style="width: 18rem;" class="clearfix  my-0 py-0" [ngClass]="{'btn-active': selection === 'abonos'}" (tap)="selectView('abonos')">
+                    <img class="float-left py-2 align-middle" src="https://img.icons8.com/ios/50/C4C4C4/pay-date.png"/>
+                    <h6 class="py-2 align-middle">Abonos</h6>
+                </mat-card>
+                <br>
+                <mat-card style="width: 18rem;" class="clearfix  my-0 py-0" [ngClass]="{'btn-active': selection === 'plenos'}" (tap)="selectView('plenos')">
+                    <img class="float-left py-2 align-middle" src="https://img.icons8.com/windows/50/C4C4C4/compare.png"/>
+                    <h6 class="py-2 align-middle">Plenos</h6>
+                </mat-card>
+                <br>
+                <mat-card style="width: 18rem;" class="clearfix my-0 py-0" [ngClass]="{'btn-active': selection === 'gastos'}" (tap)="selectView('gastos')">
+                    <img class="float-left  py-2 align-middle"  src="https://img.icons8.com/ios/50/C4C4C4/credit-control.png"/>
+                    <h6 class="py-2 align-middle">Gastos</h6>
+                </mat-card>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <abonos *ngIf="selection === 'abonos'"></abonos>
+            <plenos *ngIf="selection === 'plenos'"></plenos>
+            <gastos *ngIf="selection === 'gastos'"></gastos>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>

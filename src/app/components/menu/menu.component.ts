@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { SessionStge } from 'src/services/sessionStorage.service';
 import { Router } from '@angular/router';
+import { menuTypes } from 'src/types';
 
 
 @Component({
@@ -14,20 +15,17 @@ import { Router } from '@angular/router';
             </button>
             <div class="collapse navbar-collapse " id="navbarNav">
             <ul class="navbar-nav ml-auto navLinks">
-                <li class="nav-item active">
-                    <a class="nav-link px-3" href="Index">Inicio<span class="sr-only">(current)</span></a>
+                <li class="nav-item" [ngClass]="{active: seleccion == 'inicio'}">
+                    <a class="nav-link px-3" (tap)="goTo('inicio')" >Inicio</a>
+                </li>
+                <li class="nav-item" [ngClass]="{active: seleccion == 'balance'}">
+                    <a class="nav-link  px-3" (tap)="goTo('balance')" >Balance</a>
+                </li>
+                 <li class="nav-item" [ngClass]="{active: seleccion == 'ajustes'}">
+                    <a class="nav-link  px-3" (tap)="goTo('ajustes')" >Ajustes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  px-3" href="#">Balance</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link  px-3" href="#">Gastos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link  px-3" href="#">Ajustes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-light form-control px-3" href="#" (tap)="cerrarSession()">Salir</a>
+                    <a class="btn btn-light form-control px-3" (tap)="cerrarSession()">Salir</a>
                 </li>
             </ul>
             </div>
@@ -37,12 +35,19 @@ import { Router } from '@angular/router';
     styleUrls: ['./menu.component.css']
 })
 
-export class menuNav { 
+export class menuNav {
+    seleccion: menuTypes = 'inicio'; 
+    @Output() opcion = new EventEmitter<menuTypes>();
 
     constructor (private router: Router) {}
 
     async cerrarSession() {
         await SessionStge.cerrarSesion();
         this.router.navigateByUrl('/InicioSesion');
+    }
+
+    async goTo(opcion: menuTypes) {
+        this.seleccion = opcion;
+        this.opcion.emit(opcion);
     }
 }
